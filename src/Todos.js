@@ -1,17 +1,16 @@
 import React from 'react';
+import { createBrowserHistory } from 'history';
 import { connect } from 'react-redux'
+export const browserHistory = createBrowserHistory();
 
-
-// const Todos = ({todos, deleteTodo}) => {
   class Todos extends React.Component {
     render(){
-  //console.log(this.props)
     const todoList = this.props.todos.length ? (
       this.props.todos.map(todo => {
           return (
             <div className="collection-item" key={todo.id}>
-              <span onClick={() => {this.props.delete(todo.id)}}>{todo.content}</span>
-              {/* <span>{todo.content}</span> */}
+              <span>{todo.content}</span>
+              <button onClick={() => {this.props.delete(todo.id)}}>Delete</button>
             </div>
           )
         })
@@ -26,18 +25,14 @@ import { connect } from 'react-redux'
       )
     }
   }
-
     const mapStateToProps = (state) => {
       return {
         todos: state.todos
       }
     }
-    
     const mapDispatchToProps = (dispatch) => {
       return {
-        delete: (id) => {dispatch({type:'DEL_TODO', id:id})}
+        delete: (id) => {dispatch({type:'DEL_TODO', id:id})},
       }
-
     }
-    
     export default connect(mapStateToProps, mapDispatchToProps)(Todos);

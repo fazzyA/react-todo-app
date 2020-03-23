@@ -9,20 +9,40 @@ const initState = {
   todos: [
     {id: 1, content: 'Read Redux'},
     {id: 2, content: 'Do assignment'}
-  ]
+  ],
+  isLoggedIn:false
 }
 const reducer = (state=initState,action) => {
   switch(action.type){
-    case 'ADD_TODO':
-      return {
-        todos: [...state.todos, action.addit]
-      }
-      case 'DEL_TODO':
+    case 'LOGOUT':
+      return {...state,
+      isLoggedIn: !state.isLoggedIn
+    }
+      case 'LOGIN':
+        if(action.payload.username==='aaa' && action.payload.password==='aaa'){
+        console.log("success");
+        return { ...state,
+          isLoggedIn:true
+        }
+       }else{
+        console.log("failure");
+        return { ...state,
+          isLoggedIn:false
+        }
+       }
+      case 'ADD_TODO':
+        return {
+          todos: [...state.todos, action.addit],
+          isLoggedIn: state.isLoggedIn
+        }
+        case 'DEL_TODO':
         let newTodo = state.todos.filter(item => item.id!==action.id)
         return {
-          todos: newTodo
+          todos: newTodo,
+          isLoggedIn: state.isLoggedIn
+
         }
-      default: return state;
+        default: return state;
   }
 }
 
