@@ -15,7 +15,7 @@ class AddTodo extends Component {
 //  }
  //// new variable in state and use it to store new todo and then update
     this.setState({
-      id: Math.random().toString(36).substr(2, 9),
+      id: Math.floor(Math.random()*50.+1),
       content: e.target.value
     });
 

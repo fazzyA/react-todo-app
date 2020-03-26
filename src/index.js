@@ -42,6 +42,24 @@ const reducer = (state=initState,action) => {
           isLoggedIn: state.isLoggedIn
 
         }
+        case 'UPDATE_TODO':
+       // console.log('updated',typeof(action.updateTodo.id));
+        let con = Number(action.updateTodo.id);
+        // let newUpdateTodo= state.todos.find(item => item.id===con);
+        // newUpdateTodo.content = action.updateTodo.content;
+        // console.log(newUpdateTodo)
+        return {todos:state.todos.map(
+          todo =>
+          todo.id === con
+              ? {
+                  ...todo,
+                  content: action.updateTodo.content
+                }
+              : todo
+        ),
+        isLoggedIn: state.isLoggedIn
+
+              }//return
         default: return state;
   }
 }

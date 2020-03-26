@@ -7,7 +7,7 @@ import Form from './Form';
 class App extends Component {
 
   render() {
-    console.log('my app',this.props.isLoggedIn)
+    // console.log('my app',this.props.isLoggedIn)
     if(this.props.isLoggedIn){
       return (
         <div className="todo-app container">
